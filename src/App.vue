@@ -58,70 +58,86 @@ export default {
     const userItems = ref([
         {
             "id": 1,
-            "name": "Shoes 1"
+            "name": "Shoes 1",
+            "src": "imgs/shoes1.png"
         },
         {
             "id": 2,
-            "name": "Shoes 2"
+            "name": "Shoes 2",
+            "src": "imgs/shoes2.png"
         },
         {
             "id": 3,
-            "name": "Shoes 3"
+            "name": "Shoes 3",
+            "src": "imgs/shoes3.png"
         },
         {
             "id": 4,
-            "name": "Shoes 4"
+            "name": "Shoes 4",
+            "src": "imgs/shoes4.png"
         },
         {
             "id": 5,
-            "name": "T-shirt 1"
+            "name": "T-shirt 1",
+            "src": "imgs/tshirt1.png"
         },
         {
             "id": 6,
-            "name": "T-shirt 2"
+            "name": "T-shirt 2",
+            "src": "imgs/tshirt2.png"
         },
         {
             "id": 7,
-            "name": "T-shirt 3"
+            "name": "T-shirt 3",
+            "src": "imgs/tshirt3.png"
         },
         {
             "id": 8,
-            "name": "T-shirt 4"
+            "name": "T-shirt 4",
+            "src": "imgs/tshirt4.png"
         }
     ])
 
     const setItems = ref([
       {
           "id": 11,
-          "name": "Jacket 1"
+          "name": "Jacket 1",
+          "src": "imgs/jacket1.png"
       },
       {
           "id": 12,
-          "name": "Jacket 2"
+          "name": "Jacket 2",
+          "src": "imgs/jacket2.png"
       },
       {
           "id": 13,
-          "name": "Jacket 3"
+          "name": "Jacket 3",
+          "src": "imgs/jacket3.png"
       },
       {
           "id": 14,
-          "name": "Jacket 4"
+          "name": "Jacket 4",
+          "src": "imgs/jacket4.png"
       },
       {
           "id": 15,
-          "name": "Hoodie 1"
+          "name": "Hoodie 1",
+          "src": 'imgs/hoodie1.png'
       },
       {
           "id": 16,
-          "name": "Hoodie 2"
+          "name": "Hoodie 2",
+          "src": 'imgs/hoodie2.png'
       },
       {
           "id": 17,
-          "name": "Hoodie 3"
+          "name": "Hoodie 3",
+          "src": 'imgs/hoodie3.png'
       },
       {
           "id": 18,
-          "name": "Hoodie 4"
+          "name": "Hoodie 4",
+          "src": 'imgs/hoodie4.png'
       }
     ])
 
@@ -130,10 +146,17 @@ export default {
     const currentItem = ref(null)
 
     const addItem = (item) => {
-      if (selectedItems.value.length === 0 
-          || (selectedItems.value.find(el => el.id !== item.id) 
-          && selectedItems.value.length < LIMIT_ITEMS_LENGTH))
-      {
+      let index = -1
+
+      for (let i = 0; i < selectedItems.value.length; i++) {
+        if(selectedItems.value[i].id === item.id) {
+          index = i
+        }
+      }
+
+      if (index > -1) {
+        selectedItems.value[index] = item
+      } else {
         selectedItems.value.push(item)
       }
     }

@@ -1,6 +1,7 @@
 <template>
     <div v-for="item in list" :key="item.id" class="card-item" @click="setValue(item)">
-        {{ item.name }}
+        <span class="card-name">{{ item.name }}</span>
+        <img class="card-img" :src="getImage(item.src)" />
     </div>
 </template>
 
@@ -21,9 +22,14 @@ export default {
 
         const setValue = (item) => emit('setValue', item)
 
+        const getImage = (path) => {
+            return new URL(`../assets/${path}`, import.meta.url).href
+        }
+
         return {
             list,
-            setValue
+            setValue,
+            getImage
         }
     }
 }
@@ -43,9 +49,14 @@ export default {
     height: 80px;
     transition: .5 ease-in-out;
     cursor: pointer;
+    overflow: hidden;
 
     &:hover {
         background: rgba(0, 0, 0, .6);
+
+        .card-name {
+            display: flex;
+        }
     }
 
     &--large {
@@ -54,5 +65,25 @@ export default {
         margin: 1rem;
         margin-bottom: 4rem;
     }
+}
+
+.card-img {
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+}
+
+.card-name {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, .8);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
 }
 </style>

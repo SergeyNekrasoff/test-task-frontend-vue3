@@ -216,7 +216,9 @@ export default {
   }
 
   .card-item {
-    margin-right: 0;
+    &--large {
+      margin-right: 0;
+    }
   }
 }
 
